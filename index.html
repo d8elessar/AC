@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web Form Example</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+
+    <link
+      rel="manifest"
+      href="site.webmanifest"
+      crossorigin="use-credentials"
+    />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <meta name="theme-color" content="#fafafa" />
+
+    <!--  ----------------------------------------------------------------------  -->
+    <!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+    <!--  If necessary, please modify the charset parameter to specify the        -->
+    <!--  character set of your HTML page.                                        -->
+    <!--  ----------------------------------------------------------------------  -->
+
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+      function timestamp() {
+        var response = document.getElementById("g-recaptcha-response");
+        if (response == null || response.value.trim() == "") {
+          var elems = JSON.parse(
+            document.getElementsByName("captcha_settings")[0].value
+          );
+          elems["ts"] = JSON.stringify(new Date().getTime());
+          document.getElementsByName("captcha_settings")[0].value =
+            JSON.stringify(elems);
+        }
+      }
+      setInterval(timestamp, 500);
+    </script>
+  </head>
+
+  <body>
+    <!-- Add your site or application content here -->
+    <h1>Web Form Salesforce Example</h1>
+    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <div class="container">
+      <!--  ----------------------------------------------------------------------  -->
+      <!--  NOTE: Please add the following <FORM> element to your page.             -->
+      <!--  ----------------------------------------------------------------------  -->
+
+      <form
+        action="https://aniconlaborgmbh--dev.my.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="captcha_settings"
+          value='{"keyname":"DemoDev","fallback":"true","orgId":"00D7Y000000BEgI","ts":""}'
+        />
+        <input type="hidden" name="orgid" value="00D7Y000000BEgI" />
+        <input type="hidden" name="retURL" value="https://danke" />
+
+        <!--  ----------------------------------------------------------------------  -->
+        <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+        <!--  these lines if you wish to test in debug mode.                          -->
+        <!--  <input type="hidden" name="debug" value=1>                              -->
+        <!--  <input type="hidden" name="debugEmail" value="avalerio@annscom.de">     -->
+        <!--  ----------------------------------------------------------------------  -->
+
+        <label for="name">Kontaktname</label
+        ><input
+          id="name"
+          maxlength="80"
+          name="name"
+          size="20"
+          type="text"
+          required
+        /><br />
+
+        <label for="email">E-Mail</label
+        ><input
+          id="email"
+          maxlength="80"
+          name="email"
+          size="20"
+          type="text"
+          required
+        /><br />
+
+        <label for="type">Typ</label
+        ><select id="type" name="type" required>
+          <option value="">– Ohne –</option>
+          <option value="Angebotsanfragen">Angebotsanfragen</option>
+          <option value="Bestellungen">Bestellungen</option>
+          <option value="Technische Anfragen">Technische Anfragen</option>
+          <option value="Reklamationen">Reklamationen</option></select
+        ><br />
+
+        <label for="subject">Thema</label
+        ><input
+          id="subject"
+          maxlength="80"
+          name="subject"
+          size="20"
+          type="text"
+        /><br />
+
+        <label for="description">Beschreibung</label
+        ><textarea name="description"></textarea><br />
+
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LdA4kscAAAAALcjE_7W5uq1LcJC0c4Zjj5sQ5vh"
+        ></div>
+        <br />
+        <input type="submit" name="submit" />
+      </form>
+    </div>
+  </body>
+</html>
